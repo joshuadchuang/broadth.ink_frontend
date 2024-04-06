@@ -3,19 +3,12 @@ import "./App.css";
 
 import ActionAreaCard from "./components/Common/Card.js";
 import Button from "./components/Common/Button.js";
+import DemographicForm from "./pages/UserRegistration/DemographicForm/DemographicForm";
 
 function App() {
 	return (
 		<div className='App'>
-			<ActionAreaCard></ActionAreaCard>
-			<Button
-				mode='primary'
-				text='Click Me!'
-				onclick=''
-				height='60px'
-				width='200px'
-				fontSize='25px'
-				borderRadius='12px'></Button>
+			<DemographicForm></DemographicForm>
 		</div>
 	);
 }
