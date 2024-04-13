@@ -7,34 +7,48 @@ const formContainerStyle = {
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Box shadow for the form
     padding: '40px',
     maxWidth: '60%',
+    marginTop: '20px',
     margin: '40px auto',
     fontFamily: '"Noto Sans", sans-serif',
 };
 
+const titleStyle = {
+    textAlign: 'center', 
+    fontWeight: 'bold', 
+    fontSize: '60px',
+    color: '#333', 
+    marginBottom: '20px',
+};
+
 const labelStyle = {
-    color: '#333', // Color for the text
-    marginBottom: '5px',
+    color: '#686868', 
+    marginBottom: '7px',
+    textAlign: 'left',
     display: 'block',
     fontFamily: '"Noto Sans", sans-serif',
-    paddingLeft: '0',
+    fontWeight: 'bold',
+    fontSize: '16px',
 };
 
 const inputStyle = {
     width: '100%',
     padding: '10px 15px',
-    marginBottom: '20px',
+    marginBottom: '30px',
     border: '2px solid #7A5CFA',
     borderRadius: '4px',
     borderwidth: 'thick',
     boxSizing: 'border-box',
+    color: '#686868',
     fontFamily: '"Noto Sans", sans-serif',
-    fontSize: '16px' // Font size for inputs
+    fontSize: '16px' 
 };
 
 const checkboxContainerStyle = {
     margin: 'auto',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: '20px',
 };
 
 const checkboxStyle = {
@@ -42,9 +56,9 @@ const checkboxStyle = {
 };
 
 const checkboxLabelStyle = {
-    fontSize: '14px',
-    color: '#333',
+    color: '#686868',
     fontFamily: '"Noto Sans", sans-serif',
+    fontSize: '19px'
 };
 
 
@@ -79,6 +93,7 @@ const DemographicForm = () => {
 
     return (
         <div style={formContainerStyle}>
+            <h1 style={titleStyle}>Sign Up</h1>
             <form onSubmit={handleSubmit} style={formContainerStyle}>
                 <label style={labelStyle} htmlFor="name">Name</label>
                 <input style={inputStyle} type="text" name="name" value={formData.name} onChange={handleChange} />
@@ -113,7 +128,7 @@ const DemographicForm = () => {
                 <label style={labelStyle} htmlFor="primaryLanguage">Primary Language</label>
                 <input style={inputStyle} type="text" name="primaryLanguage" value={formData.primaryLanguage} onChange={handleChange} />
 
-                <label style={labelStyle} htmlFor="courses">Courses</label>
+                <label style={labelStyle} htmlFor="courses">Relevant Coursework</label>
                 <textarea style={inputStyle} name="courses" value={formData.courses} onChange={handleChange} />
 
             </form>
