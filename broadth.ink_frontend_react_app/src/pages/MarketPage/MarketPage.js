@@ -25,7 +25,7 @@ export default function BasicGrid() {
         </Grid>
         <Grid item xs="auto" sx={{mt: 3}}>
             <ButtonComponent
-              mode="primary"
+              mode="0"
               text="Explore"
               onClick={() => console.log('Explore Clicked')}
               height="40px"
@@ -36,7 +36,7 @@ export default function BasicGrid() {
         </Grid>
         <Grid item xs="auto" sx={{mt: 3}}>
           <ButtonComponent
-              mode="secondary"
+              mode="1"
               text="Search Bar" 
               onClick={() => console.log('Search Clicked')}
               height="40px"
@@ -48,7 +48,7 @@ export default function BasicGrid() {
         </Grid>
         <Grid item xs="auto" sx={{mt: 3}}>
           <ButtonComponent
-            mode="primary"
+            mode="0"
             text="Join For Free"
             onClick={() => console.log('Join Clicked')}
             height="40px"
@@ -83,7 +83,7 @@ export default function BasicGrid() {
             </Grid>
             <Grid item>
               <ButtonComponent
-                mode="primary"
+                mode="0"
                 text="Join For Free"
                 onClick={() => console.log('Join Clicked')}
                 height="40px"
