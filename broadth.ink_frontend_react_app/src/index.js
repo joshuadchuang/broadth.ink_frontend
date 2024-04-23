@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import HomePage from './pages/MarketPage/MarketPage';
+import Nav from './components/Common/SideNavBar';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -13,7 +14,7 @@ import "./index.css";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage/>,
+    element: <Nav/>,
   },
 ]);
 
