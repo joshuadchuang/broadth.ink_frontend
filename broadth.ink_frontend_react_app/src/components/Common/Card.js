@@ -36,3 +36,40 @@ export default function ActionAreaCard() {
 		</Card>
 	);
 }
+
+
+
+
+// export default function ActionAreaCard({labels, course_name, description, percentage}) {
+// 	return (
+// 		<Card sx={{ maxWidth: 345 }}>
+// 			<CardActionArea>
+// 				<CardMedia
+// 					component='img'
+// 					height='140'
+// 					image='https://htmlcolorcodes.com/assets/images/colors/pastel-purple-color-solid-background-1920x1080.png'
+// 					alt='book'
+// 				/>
+// 				<CardContent>
+// 					<Stack direction='row' spacing={1}>
+// 						{labels.map ((index) => (
+// 							<Chip label = {index} size = 'medium' variant = 'filled'/>
+// 						))}
+// 					</Stack>
+// 					{percentage && (<Typography gutterBottom variant='h5' component='div'>
+// 						{course_name}
+// 					</Typography>) }
+// 					<Typography gutterBottom variant='h5' component = 'div'> 
+// 						{percentage}
+// 					</Typography>
+// 					<Typography variant='body2' color='text.secondary'>
+// 						{description}
+// 					</Typography>
+					
+
+				
+// 				</CardContent>
+// 			</CardActionArea>
+// 		</Card>
+// 	);
+// }
