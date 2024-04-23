@@ -1,37 +1,23 @@
 //import { useEffect } from "react";
 import Card from "../../../components/Common/Card";
 import './StudentPage.css'; 
-import Button from '@mui/material/Button';
+import SideNavBar from "../../../components/Common/SideNavBar"; 
 
 
 function StudentPage() {
-	// const [certificates, setCertificates] = useState([]); 
-	// useEffect(() =>  {
-	// 	getCertificates(); 
-
-	// 	return () => {
-
-	// 	};
-	// }, []); 
-
-	// const getCertificates = async () => {
-
-	// }
-
 	
 	return (
 		<div className = 'StudentCertificatePage'>
 			<div className='NavBar'>
-				
-				<p> Nav Bar Holder Place</p>
+				<SideNavBar></SideNavBar>
 			</div> 
-		
-			<div className = 'Certifiacates'>
-				<Card></Card>
-				<Card></Card>
-				<Card></Card>
-				<Button>Google Sign In Button</Button>
+			<div className = 'Certificates'> 
+		    <Card></Card>
+			<Card></Card>
+			<Card></Card>
 			</div>
+			
+			
 		</div>
 	);
 	}
