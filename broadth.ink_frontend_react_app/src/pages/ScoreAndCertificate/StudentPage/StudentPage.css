@@ -1,0 +1,27 @@
+.StudentCertificatePage {
+    display: flex;
+    flex-direction: row; /* Display children in a row */
+    justify-content: flex-start; /* Align children to the start of the container */
+    align-items: flex-start; /* Align children to the top of the container */
+    height: 100%; /* Ensure the page takes up the full height */
+}
+
+.NavBar {
+    /* Define styles for NavBar */
+}
+
+.Certificates {
+    flex: 1;
+    display: flex;
+    flex-direction: row; /* Display cards horizontally */
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+    justify-content: flex-start; /* Align cards to the start of the container */
+    align-items: flex-start; /* Align cards to the top of the container */
+}
+
+.Certificates .MuiPaper-root {
+    flex: 1;
+    margin: 10px;
+    margin-bottom: 10px; /* Add some space between the cards */
+    /* Add any other styles for the cards */
+}
