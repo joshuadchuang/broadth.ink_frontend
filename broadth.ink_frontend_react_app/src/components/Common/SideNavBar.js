@@ -25,7 +25,7 @@ import logo from '../logo.png'
 //new component button: returns a button w the given label + if true class
 
 const App = props => {
-    let pageSet = ["Courses", "New", "Archived", "Certificate"];
+    let pageSet = ["Courses", "Join New", "Certificate"];
     let active = props.def in pageSet ? props.def : "Courses"
     const [pages, setPages] = useState([active]+pageSet)
 

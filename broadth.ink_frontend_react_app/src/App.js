@@ -4,7 +4,7 @@ import "./App.css";
 import ActionAreaCard from "./components/Common/Card.js";
 import Button from "./components/Common/Button.js";
 import DemographicForm from "./pages/UserRegistration/DemographicForm/DemographicForm";
-import StudentPage from "./pages/ScoreAndCertificate/StudentPage/StudentPage"; 
+import StudentPage from "./pages/ScoreAndCertificate/StudentUserCertificates/StudentUserCertificates"; 
 
 function App() {
 	return (

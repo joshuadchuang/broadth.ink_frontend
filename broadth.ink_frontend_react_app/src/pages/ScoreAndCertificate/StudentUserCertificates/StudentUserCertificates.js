@@ -1,10 +1,10 @@
 //import { useEffect } from "react";
 import Card from "../../../components/Common/Card";
-import './StudentPage.css'; 
+import './StudentUserCertificates.css'; 
 import SideNavBar from "../../../components/Common/SideNavBar"; 
 
 
-function StudentPage() {
+function StudentCerficatePage() {
 	
 	return (
 		<div className = 'StudentCertificatePage'>
@@ -22,4 +22,4 @@ function StudentPage() {
 	);
 	}
 
-export default StudentPage;
+export default StudentCerficatePage;
