@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import CustomButton from '../../../components/Common/Button.js';
+import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const formContainerStyle = {
     background: '#FFFFFF', // Background color for the form
@@ -63,6 +65,7 @@ const checkboxLabelStyle = {
 
 
 const DemographicForm = () => {
+    const [valid, setValid] = useState(false)
     const [formData, setFormData] = useState({
         name: '',
         studentId: '',
@@ -79,17 +82,23 @@ const DemographicForm = () => {
     });
 
     const handleChange = (e) => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        let navigate = useNavigate();
+        navigate('/');
         const { name, value } = e.target;
         setFormData(prevState => ({
             ...prevState,
             [name]: value
         }));
+        let val = true
+        if (formData.name==="") {val = false}
+        setValid(val)
     };
 
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevent the default form submission behavior
         console.log(formData);
-    
+      
         // URL of your Flask endpoint
         const url = 'http://127.0.0.1:5000/create_new_student';
     
@@ -127,6 +136,28 @@ const DemographicForm = () => {
             alert('Error creating student'); // Display error message
         });
     };    
+
+    const Clicked = () => {
+        console.log("hello")
+    };
+
+    const handleValidation = () => {
+        var val = true
+        if (formData.name==="") {val = false}
+        
+        // if (formData.studentId==="") {val = false}
+        // if (formData.email==="") {val = false}
+        // if (formData.pronouns==="") {val = false}
+        // if (formData.genderIdentity==="") {val = false}
+        // if (formData.ethnicityRace==="") {val = false}
+        // //if (formData.dateOfBirth=="") {return false}
+        // if (formData.gradeLevel==="") {val = false}
+        // if (formData.majorFieldOfStudy==="") {val = false}
+        // if (formData.careerInterest==="") {val = false}
+        // if (formData.primaryLanguage==="") {val = false}
+        // if (formData.courses==="") {val = false}
+        setValid(val)
+    }
 
     return (
         <div style={formContainerStyle}>
@@ -173,8 +204,9 @@ const DemographicForm = () => {
                     <input type="checkbox" style={checkboxStyle} />
                     <label style={checkboxLabelStyle}>I Agree to the Terms & Conditions</label>
             </div>
+            <Link to={handleValidation ? "/" : "#"}>
             <CustomButton 
-                    mode="primary"
+                    mode="0"
                     text="Submit"
                     onClick={handleSubmit}
                     height='60px'
@@ -182,8 +214,11 @@ const DemographicForm = () => {
                     fontSize='25px'
                     borderRadius='12px'>
             </CustomButton>
+            </Link>
         </div>
     );
 };
 
 export default DemographicForm;
+
+//{handleValidation ? "/" : 
