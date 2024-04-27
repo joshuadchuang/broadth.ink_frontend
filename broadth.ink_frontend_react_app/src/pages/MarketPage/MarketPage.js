@@ -1,4 +1,4 @@
-import logo from '../../assets/images/logo.png'
+ import logo from '../../assets/images/logo.png'
 import logo_name from '../../assets/images/logo_name.png'
 import ButtonComponent from '../../components/Common/Button.js';
 import * as React from 'react';
@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -47,6 +48,7 @@ export default function BasicGrid() {
             />
         </Grid>
         <Grid item xs="auto" sx={{mt: 3}}>
+          <Link to="/demographics">
           <ButtonComponent
             mode="0"
             text="Join For Free"
@@ -56,6 +58,7 @@ export default function BasicGrid() {
             fontSize="16px"
             borderRadius="8px"
             />
+          </Link>
         </Grid>
       </Grid>
       <Grid
