@@ -1,41 +1,38 @@
+# from flask import Flask
+# from models import db, Student, Course, CoursesEnrolled, CoursesTaken  # Import db and models from models.py
+
+# app = Flask(__name__)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# db.init_app(app)  # Initialize the db with the Flask app context
+
+
+# def create_tables():
+#     db.create_all()  # Create tables if they don't exist
+
+# @app.route('/')
+# def index():
+#     return "Hello, World!"
+
+# if __name__ == "__main__":
+#     create_tables()
+#     app.run(debug=True)
+
+
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from models import db, Student, Course, CoursesEnrolled, CoursesTaken
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-# db = SQLAlchemy(app)
-
-# # Define SQLAlchemy models
-# class Student(db.Model):
-#     sid = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(100), nullable=False)
-#     demographic = db.Column(db.Text)
-
-# class Course(db.Model):
-#     cid = db.Column(db.Integer, primary_key=True)
-#     course_name = db.Column(db.String(100), nullable=False)
-#     teacher = db.Column(db.String(100), nullable=False)
-#     short_description = db.Column(db.Text)
-#     num_students = db.Column(db.Integer, default=0)
-
-# class CoursesEnrolled(db.Model):
-#     sid = db.Column(db.Integer, db.ForeignKey('student.sid'), primary_key=True)
-#     cid = db.Column(db.Integer, db.ForeignKey('course.cid'), primary_key=True)
-#     course_grade = db.Column(db.Integer)
-#     student = db.relationship('Student', backref='courses_enrolled')
-#     course = db.relationship('Course', backref='students_enrolled')
-
-# class CoursesTaken(db.Model):
-#     sid = db.Column(db.Integer, db.ForeignKey('student.sid'), primary_key=True)
-#     cid = db.Column(db.Integer, db.ForeignKey('course.cid'), primary_key=True)
-#     course_grade = db.Column(db.Integer)
-#     student = db.relationship('Student', backref='courses_taken')
-#     course = db.relationship('Course', backref='students_taken') 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+db = SQLAlchemy(app)
 
 @app.route('/')
 def index():
     return "Hello, World!"
 
 if __name__ == "__main__":
-    # db.create_all()
+    db.create_all()
     app.run(debug=True)
