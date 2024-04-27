@@ -1,41 +1,95 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, request, jsonify
+import sqlite3
+from flask_cors import CORS
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-# db = SQLAlchemy(app)
+CORS(app)
 
-# # Define SQLAlchemy models
-# class Student(db.Model):
-#     sid = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(100), nullable=False)
-#     demographic = db.Column(db.Text)
+DATABASE = 'database.db'
 
-# class Course(db.Model):
-#     cid = db.Column(db.Integer, primary_key=True)
-#     course_name = db.Column(db.String(100), nullable=False)
-#     teacher = db.Column(db.String(100), nullable=False)
-#     short_description = db.Column(db.Text)
-#     num_students = db.Column(db.Integer, default=0)
 
-# class CoursesEnrolled(db.Model):
-#     sid = db.Column(db.Integer, db.ForeignKey('student.sid'), primary_key=True)
-#     cid = db.Column(db.Integer, db.ForeignKey('course.cid'), primary_key=True)
-#     course_grade = db.Column(db.Integer)
-#     student = db.relationship('Student', backref='courses_enrolled')
-#     course = db.relationship('Course', backref='students_enrolled')
+def get_db_connection():
+    conn = sqlite3.connect(DATABASE)
+    conn.row_factory = sqlite3.Row
+    return conn
 
-# class CoursesTaken(db.Model):
-#     sid = db.Column(db.Integer, db.ForeignKey('student.sid'), primary_key=True)
-#     cid = db.Column(db.Integer, db.ForeignKey('course.cid'), primary_key=True)
-#     course_grade = db.Column(db.Integer)
-#     student = db.relationship('Student', backref='courses_taken')
-#     course = db.relationship('Course', backref='students_taken') 
 
 @app.route('/')
 def index():
-    return "Hello, World!"
+    return "Hello world"
+
+
+@app.route('/create_new_student', methods=['POST'])
+def create_new_student():
+    data = request.json
+    print("creating new user")
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('INSERT INTO Student (sid, name, demographic) VALUES (?, ?, ?)',
+                   (data['sid'], data['name'], data['demographic']))
+    print("added new user")
+    conn.commit()
+    print("commited new user")
+    conn.close()
+    print("closed outta db")
+    return jsonify({'status': 'Created new student successfully'}), 201
+
+
+@app.route('/create_new_course', methods=['POST'])
+def create_new_course():
+    data = request.json
+    print("creating new course")
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('INSERT INTO Course (cid, course_name, teacher, short_description, num_students) VALUES (?, ?, ?, ?, ?)',
+                   (data['cid'], data['course_name'], data['teacher'], data['short_description'], data['num_students']))
+    print("added new course")
+    conn.commit()
+    print("commited new course")
+    conn.close()
+    print("closed outta db")
+    return jsonify({'status': 'Created new course successfully'}), 201
+
+
+@app.route('/student_add_course', methods=['POST'])
+def student_add_course():
+    data = request.json
+    print("joining new course")
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('INSERT INTO CoursesEnrolled (sid, cid, course_grade) VALUES (?, ?, ?)',
+                   (data['sid'], data['cid'], data['course_grade']))
+    print("joining new course")
+    conn.commit()
+    print("joining new course")
+    conn.close()
+    print("closed outta db")
+    return jsonify({'status': 'Joined new course successfully'}), 201
+
+
+@app.route('/student_finish_course', methods=['POST'])
+def student_finish_course():
+    data = request.json
+    print("Finished this course")
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM CoursesEnrolled WHERE sid = ? AND cid = ?',
+                   (data['sid'], data['cid']))
+    cursor.execute('INSERT INTO CoursesTaken (sid, cid, course_grade) VALUES (?, ?, ?)',
+                   (data['sid'], data['cid'], data['course_grade']))
+    print("Finished this course")
+    conn.commit()
+    print("Finished this course")
+    conn.close()
+    print("closed outta db")
+    return jsonify({'status': 'Finished this course successfully'}), 201
+
+
+@app.route('/demographic')
+def demographic():
+    print("demographic")
+    # conn = get_db_connection()
+
 
 if __name__ == "__main__":
-    # db.create_all()
     app.run(debug=True)
