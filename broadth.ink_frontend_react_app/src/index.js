@@ -5,19 +5,35 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import HomePage from './pages/MarketPage/MarketPage';
 import Nav from './components/Common/SideNavBar';
-import StudentPage from './pages/ScoreAndCertificate/StudentPage/StudentPage'; 
+import StudentCertificates from './pages/ScoreAndCertificate/StudentUserCertificates/StudentUserCertificates'; 
+import StudentDashboard from './pages/CourseManagement/StudentDashboard/StudentDashboard'; 
+import StudentJoinNewCourse from './pages/CourseManagement/StudentJoinNewCourse/StudentJoinNewCourse'; 
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage/>,
+    element: <StudentCertificates/>,
+    
   },
-]);
+  {
+    path: "/student-dashboard",
+    element: <StudentDashboard />,
+  },
+  {
+    path: "/student-join-new-course",
+    element: <StudentJoinNewCourse />,
+  },
+  {
+    path: "/student-certificates",
+    element: <StudentCertificates />,
+  },
+]); 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
