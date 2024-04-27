@@ -7,7 +7,7 @@ import { CardActionArea } from "@mui/material";
 import Chip from "@mui/material-next/Chip";
 import Stack from "@mui/material/Stack";
 
-export default function ActionAreaCard() {
+export default function ActionAreaCard({courseName, score, description, tags}) {
 	return (
 		<Card sx={{ maxWidth: 345 }}>
 			<CardActionArea>
@@ -19,17 +19,16 @@ export default function ActionAreaCard() {
 				/>
 				<CardContent>
 					<Stack direction='row' spacing={1}>
-						<Chip label='Python' size='medium' variant='filled' />
-						<Chip label='CSS' size='medium' variant='filled' />
-						<Chip label='JS' size='medium' variant='filled' />
-					</Stack>
+                        {tags.map((tag, index) => (
+                            // Assuming tag is a string
+                            <Chip key={index} label={tag} size='medium' variant='filled' />
+                        ))}
+                    </Stack>
 					<Typography gutterBottom variant='h5' component='div'>
-						Course Name
+						{courseName} {score}%
 					</Typography>
 					<Typography variant='body2' color='text.secondary'>
-						Course Description: Lorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Etiam vitae euismod elit. Maecenas auctor purus at
-						est semper cursus
+						Course Description: {description}
 					</Typography>
 				</CardContent>
 			</CardActionArea>

@@ -90,6 +90,30 @@ def demographic():
     print("demographic")
     # conn = get_db_connection()
 
+@app.route('/student-certificates', methods=['GET'])
+def certificate():
+    sid = 2
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('''
+        SELECT *
+        FROM CoursesEnrolled ce
+        INNER JOIN Course c ON ce.cid = c.cid
+        WHERE ce.sid = ?
+    ''', (sid,))
+
+    myresult = cursor.fetchall()
+
+    result = []
+    for row in myresult:
+        result.append(dict(zip([column[0] for column in cursor.description], row)))
+
+    cursor.close()
+    # Close the database connection
+    conn.close()
+
+    # Return the serialized data as JSON response
+    return jsonify(result)
 
 if __name__ == "__main__":
     app.run(debug=True)
