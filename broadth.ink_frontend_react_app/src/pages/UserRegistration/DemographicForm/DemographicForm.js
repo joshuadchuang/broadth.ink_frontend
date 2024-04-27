@@ -87,9 +87,46 @@ const DemographicForm = () => {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent the default form submission behavior
         console.log(formData);
-    };
+    
+        // URL of your Flask endpoint
+        const url = 'http://127.0.0.1:5000/create_new_student';
+    
+        // Fetch API to send the POST request
+        fetch(url, {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                sid: formData.studentId, // Ensure that this ID is an integer or converted to one in your backend if necessary
+                name: formData.name,
+                demographic: JSON.stringify({
+                    email: formData.email,
+                    pronouns: formData.pronouns,
+                    genderIdentity: formData.genderIdentity,
+                    ethnicityRace: formData.ethnicityRace,
+                    dateOfBirth: formData.dateOfBirth,
+                    gradeLevel: formData.gradeLevel,
+                    majorFieldOfStudy: formData.majorFieldOfStudy,
+                    careerInterest: formData.careerInterest,
+                    primaryLanguage: formData.primaryLanguage,
+                    courses: formData.courses
+                })
+            }),
+            mode: 'cors'
+        })
+        .then(response => response.json())  // Parse the JSON response
+        .then(data => {
+            console.log('Success:', data);
+            alert('New student created successfully!'); // Display success message
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('Error creating student'); // Display error message
+        });
+    };    
 
     return (
         <div style={formContainerStyle}>
@@ -139,7 +176,7 @@ const DemographicForm = () => {
             <CustomButton 
                     mode="primary"
                     text="Submit"
-                    onclick={handleSubmit}
+                    onClick={handleSubmit}
                     height='60px'
                     width='200px'
                     fontSize='25px'

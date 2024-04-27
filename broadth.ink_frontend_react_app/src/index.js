@@ -8,6 +8,7 @@ import Nav from './components/Common/SideNavBar';
 import StudentCertificates from './pages/ScoreAndCertificate/StudentUserCertificates/StudentUserCertificates'; 
 import StudentDashboard from './pages/CourseManagement/StudentDashboard/StudentDashboard'; 
 import StudentJoinNewCourse from './pages/CourseManagement/StudentJoinNewCourse/StudentJoinNewCourse'; 
+import DemographicForm from './pages/UserRegistration/DemographicForm/DemographicForm.js'; 
 import {
   createBrowserRouter,
   RouterProvider,
@@ -18,7 +19,7 @@ import "./index.css";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <StudentCertificates/>,
+    element: <DemographicForm/>,
     
   },
   {
