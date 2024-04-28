@@ -24,8 +24,6 @@ function App() {
 		<Route path="/Courses" element={<StudentDashboard />} />
 		<Route path="/Join New" element={<StudentJoinNewCourse />} />
 		<Route path="/Certificates" element={<StudentCertificates />} />
-
-
 	  	</Routes>
 		
 	);
