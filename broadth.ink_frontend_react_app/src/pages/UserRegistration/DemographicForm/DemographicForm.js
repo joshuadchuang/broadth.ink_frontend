@@ -65,7 +65,8 @@ const checkboxLabelStyle = {
 
 
 const DemographicForm = () => {
-    const [valid, setValid] = useState(false)
+    const navigate = useNavigate();  // Use this hook at the top level of your component
+    const [valid, setValid] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         studentId: '',
@@ -82,34 +83,27 @@ const DemographicForm = () => {
     });
 
     const handleChange = (e) => {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        let navigate = useNavigate();
-        navigate('/');
         const { name, value } = e.target;
         setFormData(prevState => ({
             ...prevState,
             [name]: value
         }));
-        let val = true
-        if (formData.name==="") {val = false}
-        setValid(val)
+        let val = true;
+        if (formData.name === "") { val = false; }
+        setValid(val);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevent the default form submission behavior
         console.log(formData);
-      
-        // URL of your Flask endpoint
         const url = 'http://127.0.0.1:5000/create_new_student';
-    
-        // Fetch API to send the POST request
         fetch(url, {
-            method: 'POST', // or 'PUT'
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                sid: formData.studentId, // Ensure that this ID is an integer or converted to one in your backend if necessary
+                sid: formData.studentId,
                 name: formData.name,
                 demographic: JSON.stringify({
                     email: formData.email,
@@ -124,40 +118,38 @@ const DemographicForm = () => {
                     courses: formData.courses
                 })
             }),
-            mode: 'cors'
-        })
-        .then(response => response.json())  // Parse the JSON response
-        .then(data => {
-            console.log('Success:', data);
-            alert('New student created successfully!'); // Display success message
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            alert('Error creating student'); // Display error message
-        });
-    };    
+        }).then(response => response.json())
+          .then(data => {
+              console.log('Success:', data);
+              alert('New student created successfully!');
+              navigate('/Courses');
+          }).catch((error) => {
+              console.error('Error:', error);
+              alert('Error creating student');
+          });
+    };
 
     const Clicked = () => {
         console.log("hello")
     };
 
-    const handleValidation = () => {
-        var val = true
-        if (formData.name==="") {val = false}
+    // const handleValidation = () => {
+    //     var val = true
+    //     if (formData.name==="") {val = false}
         
-        // if (formData.studentId==="") {val = false}
-        // if (formData.email==="") {val = false}
-        // if (formData.pronouns==="") {val = false}
-        // if (formData.genderIdentity==="") {val = false}
-        // if (formData.ethnicityRace==="") {val = false}
-        // //if (formData.dateOfBirth=="") {return false}
-        // if (formData.gradeLevel==="") {val = false}
-        // if (formData.majorFieldOfStudy==="") {val = false}
-        // if (formData.careerInterest==="") {val = false}
-        // if (formData.primaryLanguage==="") {val = false}
-        // if (formData.courses==="") {val = false}
-        setValid(val)
-    }
+    //     // if (formData.studentId==="") {val = false}
+    //     // if (formData.email==="") {val = false}
+    //     // if (formData.pronouns==="") {val = false}
+    //     // if (formData.genderIdentity==="") {val = false}
+    //     // if (formData.ethnicityRace==="") {val = false}
+    //     // //if (formData.dateOfBirth=="") {return false}
+    //     // if (formData.gradeLevel==="") {val = false}
+    //     // if (formData.majorFieldOfStudy==="") {val = false}
+    //     // if (formData.careerInterest==="") {val = false}
+    //     // if (formData.primaryLanguage==="") {val = false}
+    //     // if (formData.courses==="") {val = false}
+    //     setValid(val)
+    // }
 
     return (
         <div style={formContainerStyle}>
@@ -204,7 +196,7 @@ const DemographicForm = () => {
                     <input type="checkbox" style={checkboxStyle} />
                     <label style={checkboxLabelStyle}>I Agree to the Terms & Conditions</label>
             </div>
-            <Link to={handleValidation ? "/" : "#"}>
+            {/* <Link to={handleValidation ? "/" : "#"}> */}
             <CustomButton 
                     mode="0"
                     text="Submit"
@@ -214,7 +206,7 @@ const DemographicForm = () => {
                     fontSize='25px'
                     borderRadius='12px'>
             </CustomButton>
-            </Link>
+            {/* </Link> */}
         </div>
     );
 };
